@@ -1,0 +1,57 @@
+<% include partials/header %>
+
+<div class="container">
+
+    <h1><%= title %></h1>
+
+    <ul>
+        <% toDo.forEach(function (toDo) { %>
+            <li>
+              <a href="#" class="updatetask" data-id="<%= toDo._id %>">Update</a>
+                <a href="#" class="deletetask" data-id="<%= toDo._id %>">Delete</a>  
+				<p> <%= toDo.title %> </p>
+               <p> <%= toDo.description %> <p>
+                <p> <%= toDo.Status %></p> 
+				
+            </li>
+            <ul>
+              
+
+            </ul>
+        <% }) %>
+    </ul>
+
+    <h2>Add Tasks</h2>
+
+    <% if (errors != undefined) { %>
+        <ul>
+        <% errors.forEach(function(error) { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+        </ul>
+    <% } %>
+
+    <form method="POST" action="/toDo/add">
+        <div class="form-group">
+            <label for="title">title</label>
+            <input type="text" name="title" id="title" placeholder="insert task title">
+        </div>
+
+        <div class="form-group">
+            <label for="description">description</label>
+            <input type="text" name="description" id="description" placeholder="task information">
+        </div>
+
+        <div class="form-group">
+            <label for="Status">Status</label>
+            <input type="text" name="Status" id="Status" placeholder="task status">
+        </div>
+
+       
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+<% include partials/footer %>

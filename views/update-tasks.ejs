@@ -1,0 +1,56 @@
+<% include partials/header %>
+
+<div class="container">
+
+    <h2>Update toDo</h2>
+    
+    <p><a href="/">Home</a><p>
+
+    <form>
+        <input type="hidden" name="toDo" id="toDo" value="<%= toDo._id %>">
+        <div class="form-group">
+            <label for="title">title</label>
+            <input type="text" name="title" id="title" value="<%= toDo.title %>">
+        </div>
+
+        <div class="form-group">
+            <label for="description">description</label>
+            <input type="text" name="description" id="description" value="<%= toDo.description %>">
+        </div>
+
+        <div class="form-group">
+            <label for="Status">Status</label>
+            <input type="text" name="Status" id="Status" value="<%= toDo.Status %>">
+        </div>
+
+
+        <a href="#" class="btn btn-success" id="update">Save</a>
+    </form>
+
+</div>
+
+<script>
+$(document).ready(function () {
+    $('#update').on('click', updatetoDo)
+})
+
+function updatetoDo () {
+    var toDo = {
+        "id": $('#toDo').val(),
+        "title": $('#title').val(),
+        "description": $('#description').val(),
+        "Status": $('#Status').val(),
+
+    }
+    $.ajax({
+        type: 'put',
+        url: '/toDo/update',
+        data: toDo
+    }).done(function (response) {
+        window.location.replace('/')
+    })
+    window.location.replace('/')
+}
+</script>
+
+<% include partials/footer %>
